@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta charset="UTF-8">
+<title>Contrat garde animaux</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+button{
+padding:10px 16px;
+border:none;
+border-radius:6px;
+background:black;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+body{
+font-family: Calibri;
+background:#f5f5f5;
+margin:0;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+/* FORMULAIRE */
+
+.form{
+width:90%;
+max-width:900px;
+background:white;
+padding:20px;
+margin:20px;
+border-radius:8px;
+}
+
+input, textarea{
+width:100%;
+margin-bottom:8px;
+padding:6px;
+}
+
+/* CONTRAT */
+
+#doc{
+width:190mm;
+min-height:277mm;
+background:white;
+padding:10mm;
+position:relative;
+margin:auto;
+overflow:hidden;
+}
+
+.logo{
+position:absolute;
+top:15mm;
+right:15mm;
+width:110px;
+}
+
+.signature{
+position:absolute;
+bottom:15mm;
+right:20mm;
+width:160px;
+}
+
+h1{
+text-align:center;
+font-size:25px;
+}
+
+h3{
+margin-top:12px;
+}
+
+p{
+margin:4px 0;
+font-size:14px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+font-size:14px;
+}
+
+.autorisations-table{
+width:60%;
+border-collapse:collapse;
+margin-top:10px;
+font-size:14px;
+}
+
+.autorisations-table th,
+.autorisations-table td{
+border:0px solid black;
+padding:8px;
+}
+
+.autorisations-table th{
+text-align:center;
+background:white;
+}
+
+.autorisations-table td:nth-child(2),
+.autorisations-table td:nth-child(3){
+text-align:center;
+width:60px;
+}
+
+td, th{
+border:1px solid black;
+padding:5px;
+}
+
+.checkbox{
+display:inline-block;
+width:18px;
+height:18px;
+border:1px solid black;
+border-radius:3px;
+vertical-align:middle;
+}
+
+.checked::after{
+content:"✓";
+color:black;
+font-size:16px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100%;
+}
+
+.checked{
+background:white;
+}
+
+.autorisations{
+display:flex;
+flex-direction:column;
+gap:6px;
+margin:10px 0;
+}
+
+.autorisations label{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.autorisations input{
+width:auto;
+margin:0;
+}
+
+@media print{
+body *{visibility:hidden;}
+#doc, #doc *{visibility:visible;}
+#doc{position:absolute;top:0;left:0;}
+}
+
+@media screen and (max-width: 768px){
+
+body{
+padding:10px;
+}
+
+.form{
+width:100%;
+padding:15px;
+margin:0;
+box-sizing:border-box;
+}
+
+input,
+textarea{
+font-size:16px;
+box-sizing:border-box;
+}
+
+#doc{
+width:100%;
+min-height:auto;
+padding:15px;
+box-sizing:border-box;
+overflow:hidden;
+}
+
+.logo{
+width:70px;
+top:10px;
+right:10px;
+}
+
+.signature{
+width:90px;
+bottom:10px;
+right:10px;
+}
+
+table{
+font-size:11px;
+}
+
+.autorisations-table{
+width:100%;
+font-size:11px;
+}
+
+h1{
+font-size:18px;
+padding-right:60px;
+}
+
+p{
+font-size:11px;
+}
+
+button{
+width:100%;
+margin-top:10px;
+}
+
+.buttons{
+flex-direction:column;
+}
+
+}
+
+</style>
+</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body>
+
+<div class="form">
+
+<h2>Formulaire</h2>
+
+Nom
+<input placeholder="Nom" id="nom">
+Prénom
+<input placeholder="Prénom" id="prenom">
+Adresse
+<input placeholder="Adresse" id="adresse">
+Code postal
+<input placeholder="Code postal" id="cp">
+Ville
+<input placeholder="Ville" id="ville">
+Téléphone
+<input placeholder="Téléphone" id="tel">
+Email
+<input placeholder="Email" id="mail">
+Animal 1
+<input placeholder="Animal 1" id="a1">
+Type
+<input placeholder="Type" id="t1">
+Animal 2
+<input placeholder="Animal 2" id="a2">
+Type
+<input placeholder="Type" id="t2">
+Clés
+<input placeholder="Clés" id="cles">
+Personne à contacter en cas d'urgence
+<input placeholder="Personne à contacter" id="urgence">
+Téléphone urgence
+<input placeholder="Numéro personne à contacter" id="no_urgence">
+Jours et horaires d'intervention
+<textarea placeholder="Jours et horaires d'intervention" id="horaires"></textarea>
+
+Visites à 15€
+<input type="number" placeholder="Visites à 15€" id="v15" value="0">
+Visites à 12€
+<input type="number" placeholder="Visites à 12€" id="v12" value="0">
+Visites à 10€
+<input type="number" placeholder="Visites à 10€" id="v10" value="0">
+Visites majorées
+<input type="number" placeholder="Visites majorées" id="vmaj" value="0">
+Pré-visite
+<input type="number" placeholder="Pré-visite" id="pre" value="0">
+Frais de déplacement
+<input type="number" placeholder="Frais de déplacement" id="dep" value="0">
+
+<div class="autorisations">
+
+<label><input type="checkbox" id="img"> Utilisation des images</label>
+<label><input type="checkbox" id="vet"> Transport vétérinaire</label>
+<label><input type="checkbox" id="pro1"> Sortie espace public</label>
+<label><input type="checkbox" id="pro2"> Sortie espace privé extérieur</label>
+<label><input type="checkbox" id="tra"> Traitement médical</label>
+
+</div>
+
+Nom du vétérinaire
+<input placeholder="Nom du vétérinaire" id="veto">
+Ville
+<input placeholder="Ville" id="vs">
+Date
+<input type="date" id="date">
+
+<div class="buttons">
+<button onclick="pdf()">Exporter PDF</button>
+<button type="button" onclick="resetForm()">Réinitialiser</button>
+</div>
+</div>
+
+<div id="doc">
+
+<img src="logo.png" class="logo">
+
+<h1>CONTRAT DE GARDE D’ANIMAUX À DOMICILE</h1>
+
+<p>Le contrat est signé entre le propriétaire de l’animal et « De la maison au jardin ».
+
+<br>Les engagements sont effectifs durant toute la durée du contrat.</p>
+
+<h3>Propriétaire de l’animal</h3>
+
+<p>NOM : <span id="pn"></span> Prénom : <span id="pp"></span></p>
+<p>Nom de l’animal : <span id="pa1"></span> - <span id="pt1"></span></p>
+<p>Nom de l’animal : <span id="pa2"></span> - <span id="pt2"></span></p>
+<p>Adresse : <span id="pad"></span> - Code postal : <span id="pcp"></span> - Ville : <span id="pvi"></span></p>
+<p>Portable : <span id="ptel"></span> Email : <span id="pmail"></span></p>
+<p>Personnes à contacter en cas d'urgence (autre que le propriétaire de l'animal) : <span id="purgence"></span><br>
+Numéro de téléphone : <span id="pno_urgence"></span></p>
+<p>Vétérinaire : <span id="pv"></span></p>
+
+<h3>Personne en charge de la garde</h3>
+
+<p>
+De la maison au jardin<br>
+Geneviève BARBE<br>
+Adresse : 26 avenue Jean Jaurès - 87200 Saint-Junien<br>
+Téléphone : 06 07 72 17 92 - Mail : contact@delamaisonaujardin.fr<br>
+SIRET : 944 530 104 00016<br>
+ACACED n°2025/1edb-83aO<br><br>
+
+</p>
+
+<p>Le propriétaire confie la garde de l’animal aux conditions du présent contrat.</p><br>
+
+<p>Nombre de clés confiées : <span id="pcles"></span></p>
+
+<p>Jours et horaires d'intervention : <br><span id="ph"></span></p>
+
+
+<table>
+<tr><th>Tarifs</th><th>Quantité</th><th>Prix</th><th>Total</th></tr>
+
+<tr><td>Nombre de visite à 15 €</td><td id="q15"></td><td>15</td><td id="t15"></td></tr>
+<tr><td>Nombre de visite à 12 €</td><td id="q12"></td><td>12</td><td id="t12"></td></tr>
+<tr><td>Nombre de visite à 10 €</td><td id="q10"></td><td>10</td><td id="t10"></td></tr>
+<tr><td>Nombre de visite majorées</td><td id="qmaj"></td><td>20</td><td id="tmaj"></td></tr>
+<tr><td>Pré-visite</td><td id="qpre"></td><td>10</td><td id="tpre"></td></tr>
+<tr><td>Déplacement</td><td id="qdep"></td><td>5</td><td id="tdep"></td></tr>
+
+<tr><td colspan="3"><b>Total</b></td><td id="total"></td></tr>
+
+</table>
+
+
+<table class="autorisations-table">
+
+<tr>
+<th>Autorisations</th>
+<th>Oui</th>
+<th>Non</th>
+</tr>
+
+<tr>
+<td>Autorisation d'utilisation des images</td>
+<td><span class="checkbox" id="i1"></span></td>
+<td><span class="checkbox" id="i2"></span></td>
+</tr>
+
+<tr>
+<td>Transport vétérinaire</td>
+<td><span class="checkbox" id="v1"></span></td>
+<td><span class="checkbox" id="v2"></span></td>
+</tr>
+
+<tr>
+<td>Sortie dans l'espace public</td>
+<td><span class="checkbox" id="p1"></span></td>
+<td><span class="checkbox" id="p2"></span></td>
+</tr>
+
+<tr>
+<td>Sortie dans l'espace privé extérieur</td>
+<td><span class="checkbox" id="p3"></span></td>
+<td><span class="checkbox" id="p4"></span></td>
+</tr>
+
+<tr>
+<td>Traitement médical (uniquement sur ordonnance)</td>
+<td><span class="checkbox" id="t1c"></span></td>
+<td><span class="checkbox" id="t2c"></span></td>
+</tr>
+
+</table>
+
+<br><p>Fait à <span id="ps"></span> le <span id="pd"></span></p>
+
+<br>
+
+<p>
+Signature du propriétaire de l'animal :<br><br>
+
+<span id="sign_nom"></span>
+<span id="sign_prenom"></span>
+</p>
+
+<img src="signature.png" class="signature">
+
+</div>
+
+<script>
+
+sign_nom.textContent = nom.value
+sign_prenom.textContent = prenom.value
+
+document.querySelectorAll("input,textarea").forEach(e=>e.oninput=maj)
+
+function maj(){
+
+pn.textContent=nom.value
+pp.textContent=prenom.value
+pad.textContent=adresse.value
+pcp.textContent=cp.value
+pvi.textContent=ville.value
+ptel.textContent=tel.value
+pmail.textContent=mail.value
+
+purgence.textContent = urgence.value
+pno_urgence.textContent = no_urgence.value
+
+pa1.textContent=a1.value
+pt1.textContent=t1.value
+pa2.textContent=a2.value
+pt2.textContent=t2.value
+
+pcles.textContent=cles.value
+ph.textContent=horaires.value
+
+// Quantités
+let q15v = +v15.value || 0
+let q12v = +v12.value || 0
+let q10v = +v10.value || 0
+let qmajv = +vmaj.value || 0
+let qprev = +pre.value || 0
+let qdepv = +dep.value || 0
+
+// Affichage quantités
+q15.textContent = q15v
+q12.textContent = q12v
+q10.textContent = q10v
+qmaj.textContent = qmajv
+qpre.textContent = qprev
+qdep.textContent = qdepv
+
+// Calculs
+let t15v = q15v * 15
+let t12v = q12v * 12
+let t10v = q10v * 10
+let tmajv = qmajv * 20
+let tprev = qprev * 10
+let tdepv = qdepv * 5
+
+// Affichage montants
+t15.textContent = t15v + " €"
+t12.textContent = t12v + " €"
+t10.textContent = t10v + " €"
+tmaj.textContent = tmajv + " €"
+tpre.textContent = tprev + " €"
+tdep.textContent = tdepv + " €"
+
+// Total
+total.textContent =
+(t15v + t12v + t10v + tmajv + tprev + tdepv) + " €"
+function box(o,n,a){
+o.className="checkbox"+(a?" checked":"")
+n.className="checkbox"+(!a?" checked":"")
+}
+
+box(i1,i2,img.checked)
+box(v1,v2,vet.checked)
+box(p1,p2,pro1.checked)
+box(p3,p4,pro2.checked)
+box(t1c,t2c,tra.checked)
+
+
+pv.textContent=veto.value
+ps.textContent=vs.value
+pd.textContent=date.value
+
+
+}
+
+function resetForm(){
+
+document.querySelectorAll("input").forEach(i=>{
+
+if(i.type==="checkbox"){
+i.checked=false
+}
+else if(i.type==="number"){
+i.value=0
+}
+else{
+i.value=""
+}
+
+})
+
+document.querySelectorAll("textarea").forEach(t=>t.value="")
+
+maj()
+
+}
+
+function pdf(){
+
+const element = document.getElementById("doc")
+
+const opt = {
+
+margin: 0,
+
+filename: 'contrat.pdf',
+
+image: {
+type: 'jpeg',
+quality: 1
+},
+
+html2canvas: {
+scale: 2,
+useCORS: true
+},
+
+jsPDF: {
+unit: 'mm',
+format: 'a4',
+orientation: 'portrait'
+},
+
+pagebreak: {
+mode: ['avoid-all']
+}
+
+}
+
+html2pdf().set(opt).from(element).save()
+
+}
+
+const totalPages = pdf.internal.getNumberOfPages()
+
+for(let i = 1; i <= totalPages; i++){
+pdf.setPage(i)
+}
+
+})
+.save()
+
+}
+
+</script>
+<script>
+
+if('serviceWorker' in navigator){
+
+navigator.serviceWorker.register('./service-worker.js')
+
+}
+
+</script>
+</body>
+</html>
