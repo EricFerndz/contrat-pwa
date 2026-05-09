@@ -1,4 +1,4 @@
-const CACHE_NAME = "contrat-cache-v2"
+const CACHE_NAME = "contrat-cache-v3"
 
 const urlsToCache = [
   "./",
