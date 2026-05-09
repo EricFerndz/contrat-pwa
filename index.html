@@ -284,10 +284,15 @@ border:none !important;
 
 }
 
+table{
+page-break-inside: avoid;
+}
+
 .page-break{
 page-break-before: always;
 break-before: page;
 }
+
 
 </style>
 </head>
@@ -384,11 +389,11 @@ Date
 <p>Portable : <span id="ptel"></span> Email : <span id="pmail"></span></p>
 <p>Personnes à contacter en cas d'urgence (autre que le propriétaire de l'animal) : <span id="purgence"></span></p>
 <p>Numéro de téléphone : <span id="pno_urgence"></span></p>
-<p>Vétérinaire : <span id="pv"></span></p>
+<p>Nom du vétérinaire habituel : <span id="pv"></span></p>
 
 <br><h3>Personne en charge de la garde</h3>
 
-<p>De la maison au jardin<p>
+<p>De la maison au jardin</p>
 <p>Geneviève BARBE</p>
 <p>Adresse : 26 avenue Jean Jaurès - 87200 Saint-Junien</p>
 <p>Téléphone : 06 07 72 17 92 - Mail : contact@delamaisonaujardin.fr</p>
@@ -629,31 +634,6 @@ html2pdf()
 .from(element)
 .save()
 
-}
-
-html2canvas: {
-scale: 2,
-useCORS: true
-},
-
-jsPDF: {
-unit: 'mm',
-format: 'a4',
-orientation: 'portrait'
-},
-
-pagebreak: {
-mode: ['css', 'legacy']
-}
-
-}
-
-html2pdf().set(opt).from(element).save()
-
-}
-
-table{
-page-break-inside: avoid;
 }
 
 </script>
