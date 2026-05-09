@@ -29,12 +29,20 @@ cursor:pointer;
 font-size:14px;
 }
 
+table td:nth-child(2),
+table td:nth-child(3),
+table td:nth-child(4){
+
+text-align:center;
+
+}
+
 button:hover{
 opacity:0.9;
 }
 
 body{
-font-family: Calibri;
+font-family: Arial;
 background:#f5f5f5;
 margin:0;
 display:flex;
@@ -86,7 +94,7 @@ width:160px;
 }
 
 h1{
-text-align:center;
+text-align:left;
 font-size:25px;
 }
 
@@ -96,21 +104,21 @@ margin-top:12px;
 
 p{
 margin:4px 0;
-font-size:14px;
+font-size:15px;
 }
 
 table{
 width:100%;
 border-collapse:collapse;
 margin-top:10px;
-font-size:14px;
+font-size:15px;
 }
 
 .autorisations-table{
-width:60%;
+width:75%;
 border-collapse:collapse;
 margin-top:10px;
-font-size:14px;
+font-size:15px;
 }
 
 .autorisations-table th,
@@ -223,12 +231,23 @@ right:10px;
 }
 
 table{
-font-size:11px;
+font-size:15px;
 }
 
 .autorisations-table{
 width:100%;
-font-size:11px;
+font-size:14px;
+}
+
+.signature-table{
+width:100%;
+margin-top:30px;
+}
+
+.signature-table td{
+width:50%;
+vertical-align:top;
+padding-top:20px;
 }
 
 h1{
@@ -237,7 +256,7 @@ padding-right:60px;
 }
 
 p{
-font-size:11px;
+font-size:14px;
 }
 
 button{
@@ -251,6 +270,25 @@ flex-direction:column;
 
 }
 
+.signature-table{
+border-collapse:collapse;
+width:100%;
+}
+
+.signature-table,
+.signature-table tr,
+.signature-table td,
+.signature-table th{
+
+border:none !important;
+
+}
+
+.page-break{
+page-break-before: always;
+break-before: page;
+}
+
 </style>
 </head>
 
@@ -262,35 +300,35 @@ flex-direction:column;
 
 <h2>Formulaire</h2>
 
-Nom
+
 <input placeholder="Nom" id="nom">
-Prénom
+
 <input placeholder="Prénom" id="prenom">
-Adresse
+
 <input placeholder="Adresse" id="adresse">
-Code postal
+
 <input placeholder="Code postal" id="cp">
-Ville
+
 <input placeholder="Ville" id="ville">
-Téléphone
+
 <input placeholder="Téléphone" id="tel">
-Email
+
 <input placeholder="Email" id="mail">
-Animal 1
+
 <input placeholder="Animal 1" id="a1">
-Type
+
 <input placeholder="Type" id="t1">
-Animal 2
+
 <input placeholder="Animal 2" id="a2">
-Type
+
 <input placeholder="Type" id="t2">
-Clés
-<input placeholder="Clés" id="cles">
-Personne à contacter en cas d'urgence
-<input placeholder="Personne à contacter" id="urgence">
-Téléphone urgence
-<input placeholder="Numéro personne à contacter" id="no_urgence">
-Jours et horaires d'intervention
+
+<input placeholder="Nombre de clés confiées" id="cles">
+
+<input placeholder="Personne à contacter en cas d'urgence" id="urgence">
+
+<input placeholder="Numéro de la personne à contacter en cas d'urgence" id="no_urgence">
+
 <textarea placeholder="Jours et horaires d'intervention" id="horaires"></textarea>
 
 Visites à 15€
@@ -316,9 +354,7 @@ Frais de déplacement
 
 </div>
 
-Nom du vétérinaire
 <input placeholder="Nom du vétérinaire" id="veto">
-Ville
 <input placeholder="Ville" id="vs">
 Date
 <input type="date" id="date">
@@ -339,35 +375,39 @@ Date
 
 <br>Les engagements sont effectifs durant toute la durée du contrat.</p>
 
-<h3>Propriétaire de l’animal</h3>
+<br><h3>Propriétaire de l’animal</h3>
 
 <p>NOM : <span id="pn"></span> Prénom : <span id="pp"></span></p>
 <p>Nom de l’animal : <span id="pa1"></span> - <span id="pt1"></span></p>
 <p>Nom de l’animal : <span id="pa2"></span> - <span id="pt2"></span></p>
 <p>Adresse : <span id="pad"></span> - Code postal : <span id="pcp"></span> - Ville : <span id="pvi"></span></p>
 <p>Portable : <span id="ptel"></span> Email : <span id="pmail"></span></p>
-<p>Personnes à contacter en cas d'urgence (autre que le propriétaire de l'animal) : <span id="purgence"></span><br>
-Numéro de téléphone : <span id="pno_urgence"></span></p>
+<p>Personnes à contacter en cas d'urgence (autre que le propriétaire de l'animal) : <span id="purgence"></span></p>
+<p>Numéro de téléphone : <span id="pno_urgence"></span></p>
 <p>Vétérinaire : <span id="pv"></span></p>
 
-<h3>Personne en charge de la garde</h3>
+<br><h3>Personne en charge de la garde</h3>
 
-<p>
-De la maison au jardin<br>
-Geneviève BARBE<br>
-Adresse : 26 avenue Jean Jaurès - 87200 Saint-Junien<br>
-Téléphone : 06 07 72 17 92 - Mail : contact@delamaisonaujardin.fr<br>
-SIRET : 944 530 104 00016<br>
-ACACED n°2025/1edb-83aO<br><br>
+<p>De la maison au jardin<p>
+<p>Geneviève BARBE</p>
+<p>Adresse : 26 avenue Jean Jaurès - 87200 Saint-Junien</p>
+<p>Téléphone : 06 07 72 17 92 - Mail : contact@delamaisonaujardin.fr</p>
+<p>SIRET : 944 530 104 00016</p>
+<p>ACACED n°2025/1edb-83aO</p><br>
 
 </p>
 
-<p>Le propriétaire confie la garde de l’animal aux conditions du présent contrat.</p><br>
+<p>Entre le propriétaire et "De la maison au jardin", il a été convenu et arrêté ce qui suit :</p>
+<p>Le propriétaire confie à "De la maison au jardin" la garde de l’animal désigné ci'dessus, aux conditions stipulées par le présent contrat et les conditions générales de service.</p>
+<p>L'animal sera gardé au domicile du propriétaire.</p><br>
 
 <p>Nombre de clés confiées : <span id="pcles"></span></p>
 
 <p>Jours et horaires d'intervention : <br><span id="ph"></span></p>
 
+<div class="page-break"></div>
+
+<h3>Tarifs de la prestation</h3>
 
 <table>
 <tr><th>Tarifs</th><th>Quantité</th><th>Prix</th><th>Total</th></tr>
@@ -377,12 +417,18 @@ ACACED n°2025/1edb-83aO<br><br>
 <tr><td>Nombre de visite à 10 €</td><td id="q10"></td><td>10</td><td id="t10"></td></tr>
 <tr><td>Nombre de visite majorées</td><td id="qmaj"></td><td>20</td><td id="tmaj"></td></tr>
 <tr><td>Pré-visite</td><td id="qpre"></td><td>10</td><td id="tpre"></td></tr>
-<tr><td>Déplacement</td><td id="qdep"></td><td>5</td><td id="tdep"></td></tr>
+<tr>
+<td>Déplacement</td>
+<td>-</td>
+<td id="qdep"></td>
+<td id="tdep"></td>
+</tr>
 
 <tr><td colspan="3"><b>Total</b></td><td id="total"></td></tr>
 
 </table>
 
+<br><h3>Autorisations diverses</h3>
 
 <table class="autorisations-table">
 
@@ -424,15 +470,20 @@ ACACED n°2025/1edb-83aO<br><br>
 
 </table>
 
-<br><p>Fait à <span id="ps"></span> le <span id="pd"></span></p>
+<br><br><p>Fait en double exemplaires à <span id="ps"></span> le <span id="pd"></span></p>
 
 <br>
 
-<p>
-Signature du propriétaire de l'animal :<br><br>
+<table class="signature-table">
+<tr><th>Signature du propriétaire de l'animal<br>Mention manuscrite "Lu et apporuvé"</th><th>"De la maison au jardin"<br>Geneviève BARBE</th>
 
-<span id="sign_nom"></span>
-<span id="sign_prenom"></span>
+</tr>
+
+</table>
+<p>
+<br><br><br><br><br><br><br><br><br>
+
+
 </p>
 
 <img src="signature.png" class="signature">
@@ -441,8 +492,6 @@ Signature du propriétaire de l'animal :<br><br>
 
 <script>
 
-sign_nom.textContent = nom.value
-sign_prenom.textContent = prenom.value
 
 document.querySelectorAll("input,textarea").forEach(e=>e.oninput=maj)
 
@@ -473,7 +522,7 @@ let q12v = +v12.value || 0
 let q10v = +v10.value || 0
 let qmajv = +vmaj.value || 0
 let qprev = +pre.value || 0
-let qdepv = +dep.value || 0
+let depv = +dep.value || 0
 
 // Affichage quantités
 q15.textContent = q15v
@@ -481,7 +530,7 @@ q12.textContent = q12v
 q10.textContent = q10v
 qmaj.textContent = qmajv
 qpre.textContent = qprev
-qdep.textContent = qdepv
+qdep.textContent = depv + " €"
 
 // Calculs
 let t15v = q15v * 15
@@ -489,7 +538,7 @@ let t12v = q12v * 12
 let t10v = q10v * 10
 let tmajv = qmajv * 20
 let tprev = qprev * 10
-let tdepv = qdepv * 5
+let tdepv = depv
 
 // Affichage montants
 t15.textContent = t15v + " €"
@@ -549,7 +598,7 @@ const element = document.getElementById("doc")
 
 const opt = {
 
-margin: 0,
+margin: 10,
 
 filename: 'contrat.pdf',
 
@@ -570,7 +619,31 @@ orientation: 'portrait'
 },
 
 pagebreak: {
-mode: ['avoid-all']
+mode: ['css']
+}
+
+}
+
+html2pdf()
+.set(opt)
+.from(element)
+.save()
+
+}
+
+html2canvas: {
+scale: 2,
+useCORS: true
+},
+
+jsPDF: {
+unit: 'mm',
+format: 'a4',
+orientation: 'portrait'
+},
+
+pagebreak: {
+mode: ['css', 'legacy']
 }
 
 }
@@ -579,15 +652,8 @@ html2pdf().set(opt).from(element).save()
 
 }
 
-const totalPages = pdf.internal.getNumberOfPages()
-
-for(let i = 1; i <= totalPages; i++){
-pdf.setPage(i)
-}
-
-})
-.save()
-
+table{
+page-break-inside: avoid;
 }
 
 </script>
